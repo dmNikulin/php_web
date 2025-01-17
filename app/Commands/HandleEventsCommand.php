@@ -10,6 +10,8 @@ use App\EventSender\EventSender;
 
 use App\Models\Event;
 
+use App\Telegram\TelegramApiImpl;
+
 // use App\Models\EventDto;
 
 class HandleEventsCommand extends Command
@@ -34,13 +36,13 @@ class HandleEventsCommand extends Command
 
         $events = $event->select();
 
-        $eventSender = new EventSender();
+        $eventSender = new EventSender(new TelegramApiImpl($this->app->env('TELEGRAM_TOKEN')));
 
         foreach ($events as $event) {
 
             if ($this->shouldEventBeRan($event)) {
 
-                $eventSender->sendMessage($event->receiverId, $event->text);
+                $eventSender->sendMessage($event['receiver_id'], $event['text']);
 
             }
 
@@ -61,15 +63,18 @@ class HandleEventsCommand extends Command
 
         $currentWeekday = date("w");
 
-        return ($event['minute'] === $currentMinute &&
+        return (
+            (int)$event['minute'] ===  (int)$currentMinute &&
 
-            $event['hour'] === $currentHour &&
+            (int)$event['hour'] ===  (int)$currentHour &&
 
-            $event['day'] === $currentDay &&
+            (int)$event['day'] ===  (int)$currentDay &&
 
-            $event['month'] === $currentMonth &&
+            (int)$event['month'] ===  (int)$currentMonth &&
 
-            $event['weekDay'] === $currentWeekday);
+            (int)$event['day_of_week'] ===  (int)$currentWeekday);
+
+        return true;
     }
 
 }
