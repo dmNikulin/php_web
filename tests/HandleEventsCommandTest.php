@@ -6,6 +6,10 @@ use PHPUnit\Framework\TestCase;
 //php ./vendor/bin/phpunit ./tests/
 // методы в классе были изменены на Public !
 
+/**
+    * @covers HandleEventsCommand
+*/
+
 class HandleEventsCommandTest extends TestCase 
 {
     /**

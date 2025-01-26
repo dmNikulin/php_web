@@ -3,6 +3,10 @@ use PHPUnit\Framework\TestCase;
 
 //php ./vendor/bin/phpunit ./tests/ --filter SaveEventCommandTest
 
+/**
+    * @covers SaveEventCommand
+*/
+
 class SaveEventCommandTest extends TestCase {
     /**
      * @dataProvider isNeedHelpDataProvider
