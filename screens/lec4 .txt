@@ -1,0 +1,19 @@
+BACKEND API
+===============================================
+
+API - правила и взаимодействие инструментов между собой
+json_encode
+json_decode
+преобразование массивов
+
+simplexml - работа xml в php
+или domdocument
+
+YAML - в основном используется для конфигов
+для работы с Yaml в php
+
+use Simfony\Component\Yaml\Yaml
+
+Protocol Buffers
+Метод сериализации google
+

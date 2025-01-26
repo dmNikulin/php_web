@@ -1,6 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
-
+/**
+    * @covers HandleEventsDaemonCommand
+*/
 class HandleEventsDaemonCommandTest extends TestCase {
 
     public function testGetCurrentTime() {

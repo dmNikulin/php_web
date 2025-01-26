@@ -1,0 +1,6 @@
+Команды для терминала из семинара
+ php ./vendor/phpunit/phpunit/phpunit --generate-configuration
+./vendor/bin/phpunit -c phpunit.xml
+
+$ ./vendor/bin/phpunit --coverage-text -c phpunit.xml
+XDEBUG_MODE=coverage
