@@ -13,11 +13,12 @@ class TelegramApiImpl implements TelegramApi {
         $this -> token = $token;
     }
 
-    public function getMessage(int $offset): array {
-        $url = self::ENDPOINT . $this->token . '/sendMessage';
+    public function getMessages(int $offset): array{
+        $url = self::ENDPOINT . $this->token . '/getUpdates?timeout=1';
         $result = [];
 
         while(true) {
+            // $ch = curl_init("{$url}&offset= {$offset}");
             $ch = curl_init($url);
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -33,13 +34,15 @@ class TelegramApiImpl implements TelegramApi {
             }
             curl_close($ch);
 
-            if (count($response['result']) < 100) break;
+            // var_dump(gettype(['offset' => $offset,'result' => $result]));
+            // die();
 
-            return [
-                'offset' => $offset,
-                'result' => $result
-            ];
+            if (count($response['result']) < 100) break;
         }
+        return [
+            'offset' => $offset,
+            'result' => $result
+        ];
     }
 
     public function sendMessage(string $chatId, string $text): void {
