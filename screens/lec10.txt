@@ -1,0 +1,58 @@
+Кэширование в PHP
+
+- на стороне клиента (нет доступа в случае деббагинга)
+- на стороне сервера
+
+Преимущества
+-быстрый доступ к данным
+-снижение нагрузки на сервер
+-улучшенная производительность
+-лучшая отзывчивость
+
+Недостатки
+- Необходимость поддерживать актуальность данных
+- Риск несогласованности данных
+- Доп. работа по управлению кэшем
+- использование памяти
+- проблемы безопасности
+
+В кэш
+- рисунки картинки
+- обращение к бд
+- скрипты
+
+Не в кэш 
+- конф. данные
+- временные данные 
+- динамические данные 
+- сложные структуры
+- когда обработать проще, чем загрузить с кэша
+
+
+КЭШ 
+- локальный 
+- приватный 
+- общий
+
+
+sudo apt-install redis-server
+redis-cli
+
+PFADD hll_key1 element11 element12 element13
+PFADD hll_key2 element21 element22 element23
+PFCOUNT hll_key1
+
+PFMERGE hll_merged hll_key1 hll_key2
+
+SET my_key "hello reddis"
+GET my_key
+EXPIRE my_key
+EXIST my_key
+SET counter
+incr counter
+decr counter
+
+LPUSH my_list element1
+
+
+composer require psr/simple-cache
